@@ -1,0 +1,104 @@
+query article($relativePath: String!) {
+  article(relativePath: $relativePath) {
+    _sys {
+      filename
+      basename
+      breadcrumbs
+      path
+      relativePath
+      extension
+    }
+    id
+    ...ArticleParts
+  }
+}
+
+query articleConnection {
+  articleConnection {
+    totalCount
+    edges {
+      node {
+        id
+        _sys {
+          filename
+          basename
+          breadcrumbs
+          path
+          relativePath
+          extension
+        }
+        ...ArticleParts
+      }
+    }
+  }
+}
+
+query author($relativePath: String!) {
+  author(relativePath: $relativePath) {
+    _sys {
+      filename
+      basename
+      breadcrumbs
+      path
+      relativePath
+      extension
+    }
+    id
+    ...AuthorParts
+  }
+}
+
+query authorConnection {
+  authorConnection {
+    totalCount
+    edges {
+      node {
+        id
+        _sys {
+          filename
+          basename
+          breadcrumbs
+          path
+          relativePath
+          extension
+        }
+        ...AuthorParts
+      }
+    }
+  }
+}
+
+query category($relativePath: String!) {
+  category(relativePath: $relativePath) {
+    _sys {
+      filename
+      basename
+      breadcrumbs
+      path
+      relativePath
+      extension
+    }
+    id
+    ...CategoryParts
+  }
+}
+
+query categoryConnection {
+  categoryConnection {
+    totalCount
+    edges {
+      node {
+        id
+        _sys {
+          filename
+          basename
+          breadcrumbs
+          path
+          relativePath
+          extension
+        }
+        ...CategoryParts
+      }
+    }
+  }
+}

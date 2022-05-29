@@ -1,0 +1,54 @@
+fragment ArticleParts on Article {
+  title
+  slug
+  authors {
+    __typename
+    author {
+      ... on Document {
+        id
+      }
+    }
+  }
+  image
+  date
+  description
+  categories {
+    __typename
+    category {
+      ... on Document {
+        id
+      }
+    }
+  }
+  featured
+  body
+}
+
+fragment AuthorParts on Author {
+  title
+  slug
+  email
+  first_name
+  twitter
+  github
+  linkedin
+  bio
+  image
+  avif
+  avif_base64
+  image_base64
+}
+
+fragment CategoryParts on Category {
+  title
+  slug
+  related {
+    __typename
+    category {
+      ... on Document {
+        id
+      }
+    }
+  }
+  description
+}

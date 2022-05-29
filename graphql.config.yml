@@ -1,0 +1,5 @@
+projects:
+  app:
+    schema: .tina/__generated__/schema.gql
+    documents:
+      - .tina/queries/**/*.gql

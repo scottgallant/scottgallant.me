@@ -1,0 +1,114 @@
+query getArticle($relativePath: String!) {
+  article(relativePath: $relativePath) {
+    title
+    slug
+    authors {
+      author {
+        ... on Author {
+          title
+          first_name
+          twitter
+          image
+          bio
+        }
+      }
+    }
+    image
+    date
+    description
+    categories {
+      category {
+        ... on Category {
+          title
+        }
+      }
+    }
+    body
+  }
+}
+
+query getCategory($relativePath: String) {
+  category(relativePath: $relativePath) {
+    title
+    slug
+    description
+    related {
+      category {
+        ... on Category {
+          _sys {
+            filename
+          }
+          title
+        }
+      }
+    }
+  }
+}
+
+query getArticlesByCategory($category: String) {
+  articleConnection(
+    filter: {
+      categories: { category: { category: { slug: { eq: $category } } } }
+    }
+  ) {
+    edges {
+      node {
+        _sys {
+          filename
+        }
+        title
+        slug
+        image
+        categories {
+          category {
+            ... on Category {
+              title
+              slug
+              description
+            }
+          }
+        }
+        authors {
+          author {
+            ... on Author {
+              title
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+query getArticlesByAuthor($author: String) {
+  articleConnection(
+    filter: { authors: { author: { author: { slug: { eq: $author } } } } }
+  ) {
+    edges {
+      node {
+        _sys {
+          filename
+        }
+        title
+        slug
+        image
+        categories {
+          category {
+            ... on Category {
+              title
+              slug
+              description
+            }
+          }
+        }
+        authors {
+          author {
+            ... on Author {
+              title
+            }
+          }
+        }
+      }
+    }
+  }
+}
