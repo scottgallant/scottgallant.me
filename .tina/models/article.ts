@@ -15,6 +15,11 @@ const article: TinaCloudCollection = {
     },
     {
       type: "string",
+      label: "Sub Title",
+      name: "subtitle",
+    },
+    {
+      type: "string",
       label: "Slug",
       name: "slug",
     },

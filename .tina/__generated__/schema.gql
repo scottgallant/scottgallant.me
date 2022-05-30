@@ -100,6 +100,7 @@ type ArticleCategories {
 
 type Article implements Node & Document {
   title: String
+  subtitle: String
   slug: String
   authors: [ArticleAuthors]
   image: String
@@ -165,6 +166,7 @@ input ArticleBodyFilter {
 
 input ArticleFilter {
   title: StringFilter
+  subtitle: StringFilter
   slug: StringFilter
   authors: ArticleAuthorsFilter
   image: StringFilter
@@ -301,6 +303,7 @@ input ArticleCategoriesMutation {
 
 input ArticleMutation {
   title: String
+  subtitle: String
   slug: String
   authors: [ArticleAuthorsMutation]
   image: String

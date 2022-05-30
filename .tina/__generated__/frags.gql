@@ -1,5 +1,6 @@
 fragment ArticleParts on Article {
   title
+  subtitle
   slug
   authors {
     __typename

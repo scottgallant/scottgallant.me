@@ -1,36 +1,22 @@
 import Link from 'next/link'
 import Head from 'next/head'
+import Navbar from "./navbar";
+import Footer from "./footer";
+import Signup from "./newsletter-signup";
+
 
 export const Layout = (props) => {
   return (
-    <div
-      style={{
-        margin: '3rem',
-      }}
-    >
+    <div className="relative overflow-hidden dark:bg-stone-800">
       <Head>
-        <title>Tina App</title>
+        <title>Scott Gallant </title>
         <meta name="description" content="A TinaCMS Application" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header>
-        <Link href="/">
-          <a>Home</a>
-        </Link>
-        {' | '}
-        <Link href="/articles">
-          <a>Articles</a>
-        </Link>
-        {' | '}
-        <Link href="/categories">
-          <a>Categories</a>
-        </Link>
-        {' | '}
-        <Link href="/authors">
-          <a>Authors</a>
-        </Link>
-      </header>
-      <main>{props.children}</main>
+      <Navbar />
+      {props.children}
+      <Footer />
+
     </div>
   )
 }

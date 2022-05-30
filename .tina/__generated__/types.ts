@@ -201,6 +201,7 @@ export type ArticleCategories = {
 export type Article = Node & Document & {
   __typename?: 'Article';
   title?: Maybe<Scalars['String']>;
+  subtitle?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
   authors?: Maybe<Array<Maybe<ArticleAuthors>>>;
   image?: Maybe<Scalars['String']>;
@@ -266,6 +267,7 @@ export type ArticleBodyFilter = {
 
 export type ArticleFilter = {
   title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
   slug?: InputMaybe<StringFilter>;
   authors?: InputMaybe<ArticleAuthorsFilter>;
   image?: InputMaybe<StringFilter>;
@@ -475,6 +477,7 @@ export type ArticleCategoriesMutation = {
 
 export type ArticleMutation = {
   title?: InputMaybe<Scalars['String']>;
+  subtitle?: InputMaybe<Scalars['String']>;
   slug?: InputMaybe<Scalars['String']>;
   authors?: InputMaybe<Array<InputMaybe<ArticleAuthorsMutation>>>;
   image?: InputMaybe<Scalars['String']>;
@@ -516,7 +519,7 @@ export type GetArticleQueryVariables = Exact<{
 }>;
 
 
-export type GetArticleQuery = { __typename?: 'Query', article: { __typename?: 'Article', title?: string | null, slug?: string | null, image?: string | null, date?: string | null, description?: string | null, body?: any | null, authors?: Array<{ __typename?: 'ArticleAuthors', author?: { __typename?: 'Author', title?: string | null, first_name?: string | null, twitter?: string | null, image?: string | null, bio?: string | null } | null } | null> | null, categories?: Array<{ __typename?: 'ArticleCategories', category?: { __typename?: 'Category', title?: string | null } | null } | null> | null } };
+export type GetArticleQuery = { __typename?: 'Query', article: { __typename?: 'Article', title?: string | null, slug?: string | null, image?: string | null, subtitle?: string | null, date?: string | null, description?: string | null, body?: any | null, authors?: Array<{ __typename?: 'ArticleAuthors', author?: { __typename?: 'Author', title?: string | null, first_name?: string | null, twitter?: string | null, image?: string | null, bio?: string | null } | null } | null> | null, categories?: Array<{ __typename?: 'ArticleCategories', category?: { __typename?: 'Category', title?: string | null } | null } | null> | null } };
 
 export type GetCategoryQueryVariables = Exact<{
   relativePath?: InputMaybe<Scalars['String']>;
@@ -539,7 +542,7 @@ export type GetArticlesByAuthorQueryVariables = Exact<{
 
 export type GetArticlesByAuthorQuery = { __typename?: 'Query', articleConnection: { __typename?: 'ArticleConnection', edges?: Array<{ __typename?: 'ArticleConnectionEdges', node?: { __typename?: 'Article', title?: string | null, slug?: string | null, image?: string | null, _sys: { __typename?: 'SystemInfo', filename: string }, categories?: Array<{ __typename?: 'ArticleCategories', category?: { __typename?: 'Category', title?: string | null, slug?: string | null, description?: string | null } | null } | null> | null, authors?: Array<{ __typename?: 'ArticleAuthors', author?: { __typename?: 'Author', title?: string | null } | null } | null> | null } | null } | null> | null } };
 
-export type ArticlePartsFragment = { __typename?: 'Article', title?: string | null, slug?: string | null, image?: string | null, date?: string | null, description?: string | null, featured?: boolean | null, body?: any | null, authors?: Array<{ __typename: 'ArticleAuthors', author?: { __typename?: 'Author', id: string } | null } | null> | null, categories?: Array<{ __typename: 'ArticleCategories', category?: { __typename?: 'Category', id: string } | null } | null> | null };
+export type ArticlePartsFragment = { __typename?: 'Article', title?: string | null, subtitle?: string | null, slug?: string | null, image?: string | null, date?: string | null, description?: string | null, featured?: boolean | null, body?: any | null, authors?: Array<{ __typename: 'ArticleAuthors', author?: { __typename?: 'Author', id: string } | null } | null> | null, categories?: Array<{ __typename: 'ArticleCategories', category?: { __typename?: 'Category', id: string } | null } | null> | null };
 
 export type AuthorPartsFragment = { __typename?: 'Author', title?: string | null, slug?: string | null, email?: string | null, first_name?: string | null, twitter?: string | null, github?: string | null, linkedin?: string | null, bio?: string | null, image?: string | null, avif?: string | null, avif_base64?: string | null, image_base64?: string | null };
 
@@ -550,12 +553,12 @@ export type ArticleQueryVariables = Exact<{
 }>;
 
 
-export type ArticleQuery = { __typename?: 'Query', article: { __typename?: 'Article', id: string, title?: string | null, slug?: string | null, image?: string | null, date?: string | null, description?: string | null, featured?: boolean | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, authors?: Array<{ __typename: 'ArticleAuthors', author?: { __typename?: 'Author', id: string } | null } | null> | null, categories?: Array<{ __typename: 'ArticleCategories', category?: { __typename?: 'Category', id: string } | null } | null> | null } };
+export type ArticleQuery = { __typename?: 'Query', article: { __typename?: 'Article', id: string, title?: string | null, subtitle?: string | null, slug?: string | null, image?: string | null, date?: string | null, description?: string | null, featured?: boolean | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, authors?: Array<{ __typename: 'ArticleAuthors', author?: { __typename?: 'Author', id: string } | null } | null> | null, categories?: Array<{ __typename: 'ArticleCategories', category?: { __typename?: 'Category', id: string } | null } | null> | null } };
 
 export type ArticleConnectionQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ArticleConnectionQuery = { __typename?: 'Query', articleConnection: { __typename?: 'ArticleConnection', totalCount: number, edges?: Array<{ __typename?: 'ArticleConnectionEdges', node?: { __typename?: 'Article', id: string, title?: string | null, slug?: string | null, image?: string | null, date?: string | null, description?: string | null, featured?: boolean | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, authors?: Array<{ __typename: 'ArticleAuthors', author?: { __typename?: 'Author', id: string } | null } | null> | null, categories?: Array<{ __typename: 'ArticleCategories', category?: { __typename?: 'Category', id: string } | null } | null> | null } | null } | null> | null } };
+export type ArticleConnectionQuery = { __typename?: 'Query', articleConnection: { __typename?: 'ArticleConnection', totalCount: number, edges?: Array<{ __typename?: 'ArticleConnectionEdges', node?: { __typename?: 'Article', id: string, title?: string | null, subtitle?: string | null, slug?: string | null, image?: string | null, date?: string | null, description?: string | null, featured?: boolean | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, authors?: Array<{ __typename: 'ArticleAuthors', author?: { __typename?: 'Author', id: string } | null } | null> | null, categories?: Array<{ __typename: 'ArticleCategories', category?: { __typename?: 'Category', id: string } | null } | null> | null } | null } | null> | null } };
 
 export type AuthorQueryVariables = Exact<{
   relativePath: Scalars['String'];
@@ -584,6 +587,7 @@ export type CategoryConnectionQuery = { __typename?: 'Query', categoryConnection
 export const ArticlePartsFragmentDoc = gql`
     fragment ArticleParts on Article {
   title
+  subtitle
   slug
   authors {
     __typename
@@ -656,6 +660,7 @@ export const GetArticleDocument = gql`
       }
     }
     image
+    subtitle
     date
     description
     categories {
