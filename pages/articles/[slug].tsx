@@ -5,6 +5,8 @@ import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { CaptionedImage } from "../../components/mdx-components/captionedImage";
 import { PullQuote } from "../../components/mdx-components/pullQuote";
 import { formatDate } from "../../utils/helpers";
+import Image from 'next/image'
+
 
 const components = { CaptionedImage, PullQuote };
 
@@ -18,6 +20,15 @@ export default function Article(props) {
 
   return (
     <Layout>
+      <div className="h-80 relative ">
+        {/* <Image
+          src={data.article.image.url}
+          alt="Facebook Vs the Open Web"
+          layout='fill'
+          objectFit='cover'
+        /> */}
+      </div>
+      <p className="font-sans text-xs text-gray-500">{data.article.imageSource}</p>
       <div className="max-w-3xl mx-auto sm:px-6 px-6 md:px-0">
         <h1 className="text-gray-800">{data.article.title}</h1>
         <p className="subtitle text-2xl font-light leading-relaxed text-gray-600">{data.article.subtitle}</p>
