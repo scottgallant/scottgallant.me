@@ -21,12 +21,12 @@ export default function Article(props) {
   return (
     <Layout>
       <div className="h-80 relative ">
-        {/* <Image
-          src={data.article.image.url}
+        <Image
+          src={data.article.image}
           alt="Facebook Vs the Open Web"
           layout='fill'
           objectFit='cover'
-        /> */}
+        />
       </div>
       <p className="font-sans text-xs text-gray-500">{data.article.imageSource}</p>
       <div className="max-w-3xl mx-auto sm:px-6 px-6 md:px-0">
