@@ -4,11 +4,12 @@ import { Layout } from "../../components/Layout";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { CaptionedImage } from "../../components/mdx-components/captionedImage";
 import { PullQuote } from "../../components/mdx-components/pullQuote";
+import { Tweet } from "../../components/mdx-components/tweet";
 import { formatDate } from "../../utils/helpers";
 import Image from 'next/image'
 
 
-const components = { CaptionedImage, PullQuote };
+const components = { CaptionedImage, PullQuote, Tweet };
 
 export default function Article(props) {
   // data passes though in production mode and data is updated to the sidebar data in edit-mode

@@ -12,6 +12,7 @@ export const Layout = (props) => {
         <title>Scott Gallant </title>
         <meta name="description" content="A TinaCMS Application" />
         <link rel="icon" href="/favicon.ico" />
+        <script src="https://platform.twitter.com/widgets.js" charset="utf-8" defer={true}></script>
       </Head>
       <Navbar />
       {props.children}

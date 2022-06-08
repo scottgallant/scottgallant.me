@@ -61,7 +61,7 @@ const article: TinaCloudCollection = {
             {
               ui: {
                 defaultValue:
-                  "https://res.cloudinary.com/indysigner/image/upload/v1596441658/checklists-header-opt_dst2qk.png",
+                  "https://res.cloudinary.com/demo/image/upload/sample.jpg",
               },
               name: "imgUrl",
               label: "Image URL",
@@ -74,6 +74,29 @@ const article: TinaCloudCollection = {
               name: "caption",
               label: "Caption",
               type: "string",
+            },
+            {
+              ui: {
+                alt: "This is my caption",
+              },
+              name: "alt",
+              label: "Image alt text",
+              type: "string",
+            },
+          ],
+        },
+        {
+          name: "Tweet",
+          label: "Tweet",
+          fields: [
+            {
+              ui: {
+                defaultValue: "1533470815550939136",
+              },
+              name: "tweetId",
+              label: "Tweet ID",
+              type: "string",
+              description: "Unique number (about 20-digits) at the end of the Tweet URL",
             },
           ],
         },

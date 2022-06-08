@@ -254,6 +254,11 @@ export type BooleanFilter = {
 export type ArticleBodyCaptionedImageFilter = {
   imgUrl?: InputMaybe<StringFilter>;
   caption?: InputMaybe<StringFilter>;
+  alt?: InputMaybe<StringFilter>;
+};
+
+export type ArticleBodyTweetFilter = {
+  tweetId?: InputMaybe<StringFilter>;
 };
 
 export type ArticleBodyPullQuoteFilter = {
@@ -262,6 +267,7 @@ export type ArticleBodyPullQuoteFilter = {
 
 export type ArticleBodyFilter = {
   CaptionedImage?: InputMaybe<ArticleBodyCaptionedImageFilter>;
+  Tweet?: InputMaybe<ArticleBodyTweetFilter>;
   PullQuote?: InputMaybe<ArticleBodyPullQuoteFilter>;
 };
 
