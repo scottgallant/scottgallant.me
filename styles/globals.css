@@ -58,7 +58,7 @@ h4 {
     font-family: 'Libre Baskerville', serif;
     /* font-family: 'charterregular', serif; */
     font-weight: 100 !important;
-    color: theme('colors.stone.800');
+    /* color: theme('colors.stone.800'); */
     line-height: 3em;
     letter-spacing: -.25px;
 }
@@ -82,7 +82,7 @@ h1 {
 
 main.prose {
     font-family: 'Libre Baskerville', serif;
-    color: theme('colors.stone.800');
+    /* color: theme('colors.stone.800'); */
     font-size: 1.15em;
     line-height: 1.85em;
     font-weight: 400;
@@ -90,6 +90,27 @@ main.prose {
     -webkit-font-smoothing: antialiased;
 }
 
-main.prose blockquote p {
+main.prose blockquote {
     font-style: normal;
 }
+
+.dark .prose blockquote,
+.dark main.prose strong,
+.dark main.prose a {
+    color: theme('colors.stone.200');
+
+}
+
+/* 
+:root {
+
+--background: white;
+--foreground: black;
+}
+
+[data-theme='dark'] {
+    --background: black;
+    --foreground: white;
+}
+
+*/

@@ -1,3 +1,6 @@
+import ThemeSwitch from './ThemeSwitch'
+
+
 const socialNavigation = [
     {
         name: 'Twitter',
@@ -32,6 +35,7 @@ export default function SocialLinks() {
                     <item.icon className="h-6 w-6" aria-hidden="true" />
                 </a>
             ))}
+            <ThemeSwitch />
         </div>
     )
 }
