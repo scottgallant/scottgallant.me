@@ -35,7 +35,7 @@ export default function Navbar() {
                                     {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
                                     <a
                                         href="/"
-                                        className={router.pathname == "/" ? "border-stone-500 border-b-2 text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium" : "hover:border-stone-200 hover:border-b-2 border-b-2 border-transparent text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium"}
+                                        className={router.pathname == "/" ? "border-gray-500 border-b-2 text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium  dark:text-white" : "hover:border-gray-200 hover:border-b-2 border-b-2 border-transparent text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium  dark:text-white"}
                                     >
                                         Home
                                     </a>
@@ -44,13 +44,13 @@ export default function Navbar() {
                                         className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                                     >
                                         Categories
-                                    </a>
-                                    <a
-                                        href="/authors/scott-gallant"
-                                        className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-                                    >
-                                        About
-                                    </a> */}
+                                    </a>*/
+                                        <a
+                                            href="/authors/scott-gallant"
+                                            className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                                        >
+                                            About
+                                        </a>}
                                 </div>
                             </div>
                             <SocialLinks />

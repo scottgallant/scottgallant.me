@@ -8,8 +8,8 @@ export default function Home({ articles }) {
   return (
     <Layout>
       <div className="max-w-3xl mx-auto sm:px-6 px-6 md:px-0 min-h-screen">
-        <h1 className="text-gray-800 text-center">Scott Gallant</h1>
-        <p className="subtitle text-2xl font-light leading-relaxed text-gray-600 dark:text-white">
+        <h1 className="text-gray-800 text-center pb-12">Scott Gallant</h1>
+        <p className="subtitle text-2xl font-light leading-relaxed light:text-gray-600">
           👋 I'm Scott.  I'm a proud father, I like to bake bread, and I sail a <Link href=""><a href="">small boat</a></Link> around Eastern 🇨🇦. I'm the founder &amp; CEO at <Link href="https://tina.io"><a href="https://tina.io">tina.io</a></Link> where we're redifining web publishing.
         </p>
         <ul className="mt-10">

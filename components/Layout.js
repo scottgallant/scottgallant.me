@@ -7,7 +7,7 @@ import Signup from "./newsletter-signup";
 
 export const Layout = (props) => {
   return (
-    <div className="relative overflow-hidden dark:bg-stone-800">
+    <div className="relative overflow-hidden dark:bg-gray-800 dark:text-gray-300">
       <Head>
         <title>Scott Gallant </title>
         <meta name="description" content="A TinaCMS Application" />
