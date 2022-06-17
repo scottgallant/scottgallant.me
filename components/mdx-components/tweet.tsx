@@ -1,5 +1,11 @@
-export const Tweet = (props) => {
+import TweetEmbed from 'react-tweet-embed'
+
+export const Tweet = ({ tweetId }) => {
+  console.log(tweetId);
+
   return (
-    <blockquote class="twitter-tweet"><a href={`https://twitter.com/x/status/${props.tweetId}`}></a></blockquote>
+
+    < TweetEmbed tweetId={`${tweetId}`} options={{ theme: 'dark', align: 'center' }} />
   );
 };
+

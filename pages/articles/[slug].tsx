@@ -9,7 +9,12 @@ import { formatDate } from "../../utils/helpers";
 import Image from 'next/image'
 
 
-const components = { CaptionedImage, PullQuote, Tweet };
+const components = {
+  CaptionedImage, PullQuote, Tweet: (props) => {
+    // console.log(props)
+    return <Tweet tweetId={props.tweetId} />;
+  },
+};
 
 export default function Article(props) {
   // data passes though in production mode and data is updated to the sidebar data in edit-mode
