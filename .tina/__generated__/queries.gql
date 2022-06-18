@@ -102,3 +102,38 @@ query categoryConnection {
     }
   }
 }
+
+query pages($relativePath: String!) {
+  pages(relativePath: $relativePath) {
+    _sys {
+      filename
+      basename
+      breadcrumbs
+      path
+      relativePath
+      extension
+    }
+    id
+    ...PagesParts
+  }
+}
+
+query pagesConnection {
+  pagesConnection {
+    totalCount
+    edges {
+      node {
+        id
+        _sys {
+          filename
+          basename
+          breadcrumbs
+          path
+          relativePath
+          extension
+        }
+        ...PagesParts
+      }
+    }
+  }
+}

@@ -1,29 +1,28 @@
+
 import Link from "next/link";
 import { ExperimentalGetTinaClient } from "../.tina/__generated__/types";
 import { Layout } from "../components/Layout";
+import { formatDate } from "../utils/helpers";
 
 export default function Home({ articles }) {
-  const featuredArticles = articles.filter((article) => article.node.featured);
-
+  // console.log(articles);
   return (
     <Layout>
       <div className="max-w-3xl mx-auto sm:px-6 px-6 md:px-0 min-h-screen">
         <h1 className="text-gray-800 text-center pb-12">Scott Gallant</h1>
-        <p className="subtitle text-2xl font-light leading-relaxed light:text-gray-600">
-          👋 I'm Scott.  I'm a proud father, I like to bake bread, and I sail a <Link href=""><a href="">small boat</a></Link> around Eastern 🇨🇦. I'm the founder &amp; CEO at <Link href="https://tina.io"><a href="https://tina.io">tina.io</a></Link> where we're redifining web publishing.
+        <p className="copy text-2xl leading-relaxed text-gray-700 dark:text-gray-300 font-serif font-normal">
+          👋 I'm Scott. I'm a proud father of two from Eastern Canada. I like to bake bread, go on adventures, and make things with my computer. I'm the founder &amp; CEO of <Link href="https://tina.io"><a href="https://tina.io">Tina.io</a></Link> where we're redifining web publishing.
         </p>
-        <ul className="mt-10">
+        {/* <h2 className="mb-8 mt-12 pb-4 text-2xl border-b-2 text-gray-600 dark:text-gray-300">Posts</h2>
+        <ul>
           {articles.map((article) => (
-            <li className="flex items-center" key={article.node._sys.filename}>
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-7" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-              </svg>
+            <li key={article.node._sys.filename}>
               <Link href={`/articles/${article.node._sys.filename}`}>
-                <a>{article.node.title}</a>
+                <a className="text-lg block  hover:bg-gray-100 dark:hover:bg-gray-900 rounded-md py-2 px-2 ">{article.node.title} &nbsp; <date className="text-gray-400 text-sm italic"> • {formatDate(article.node.date)}</date> </a>
               </Link>
             </li>
           ))}
-        </ul>
+        </ul> */}
       </div>
     </Layout>
   );

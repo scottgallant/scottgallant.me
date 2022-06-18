@@ -53,3 +53,9 @@ fragment CategoryParts on Category {
   }
   description
 }
+
+fragment PagesParts on Pages {
+  title
+  slug
+  text
+}

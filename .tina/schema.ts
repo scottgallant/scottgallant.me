@@ -2,12 +2,14 @@ import { defineSchema, defineConfig } from "tinacms";
 import article from "./models/article";
 import author from "./models/author";
 import category from "./models/category";
+import page from "./models/page";
 
 export default defineSchema({
   collections: [
     article,
     author,
     category,
+    page,
   ],
 });
 
@@ -29,6 +31,9 @@ export const tinaConfig = defineConfig({
       const RouteMapping = new RouteMappingPlugin((collection, document) => {
         if (["article"].includes(collection.name)) {
           return `/articles/${document._sys.filename}`;
+        }
+        if (["pages"].includes(collection.name)) {
+          return `/${document._sys.filename}`;
         }
 
         return undefined;

@@ -72,6 +72,8 @@ export type Query = {
   authorConnection: AuthorConnection;
   category: Category;
   categoryConnection: CategoryConnection;
+  pages: Pages;
+  pagesConnection: PagesConnection;
 };
 
 
@@ -140,10 +142,26 @@ export type QueryCategoryConnectionArgs = {
   filter?: InputMaybe<CategoryFilter>;
 };
 
+
+export type QueryPagesArgs = {
+  relativePath?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryPagesConnectionArgs = {
+  before?: InputMaybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Float']>;
+  last?: InputMaybe<Scalars['Float']>;
+  sort?: InputMaybe<Scalars['String']>;
+  filter?: InputMaybe<PagesFilter>;
+};
+
 export type DocumentFilter = {
   article?: InputMaybe<ArticleFilter>;
   author?: InputMaybe<AuthorFilter>;
   category?: InputMaybe<CategoryFilter>;
+  pages?: InputMaybe<PagesFilter>;
 };
 
 export type DocumentConnectionEdges = {
@@ -182,7 +200,7 @@ export type CollectionDocumentsArgs = {
   filter?: InputMaybe<DocumentFilter>;
 };
 
-export type DocumentNode = Article | Author | Category;
+export type DocumentNode = Article | Author | Category | Pages;
 
 export type ArticleAuthorsAuthor = Author;
 
@@ -200,7 +218,7 @@ export type ArticleCategories = {
 
 export type Article = Node & Document & {
   __typename?: 'Article';
-  title?: Maybe<Scalars['String']>;
+  title: Scalars['String'];
   subtitle?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
   authors?: Maybe<Array<Maybe<ArticleAuthors>>>;
@@ -390,6 +408,41 @@ export type CategoryConnection = Connection & {
   edges?: Maybe<Array<Maybe<CategoryConnectionEdges>>>;
 };
 
+export type Pages = Node & Document & {
+  __typename?: 'Pages';
+  title: Scalars['String'];
+  slug?: Maybe<Scalars['String']>;
+  text?: Maybe<Scalars['JSON']>;
+  id: Scalars['ID'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON'];
+};
+
+export type RichTextFilter = {
+  startsWith?: InputMaybe<Scalars['String']>;
+  eq?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type PagesFilter = {
+  title?: InputMaybe<StringFilter>;
+  slug?: InputMaybe<StringFilter>;
+  text?: InputMaybe<RichTextFilter>;
+};
+
+export type PagesConnectionEdges = {
+  __typename?: 'PagesConnectionEdges';
+  cursor: Scalars['String'];
+  node?: Maybe<Pages>;
+};
+
+export type PagesConnection = Connection & {
+  __typename?: 'PagesConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float'];
+  edges?: Maybe<Array<Maybe<PagesConnectionEdges>>>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   addPendingDocument: DocumentNode;
@@ -402,6 +455,8 @@ export type Mutation = {
   createAuthor: Author;
   updateCategory: Category;
   createCategory: Category;
+  updatePages: Pages;
+  createPages: Pages;
 };
 
 
@@ -467,10 +522,23 @@ export type MutationCreateCategoryArgs = {
   params: CategoryMutation;
 };
 
+
+export type MutationUpdatePagesArgs = {
+  relativePath: Scalars['String'];
+  params: PagesMutation;
+};
+
+
+export type MutationCreatePagesArgs = {
+  relativePath: Scalars['String'];
+  params: PagesMutation;
+};
+
 export type DocumentMutation = {
   article?: InputMaybe<ArticleMutation>;
   author?: InputMaybe<AuthorMutation>;
   category?: InputMaybe<CategoryMutation>;
+  pages?: InputMaybe<PagesMutation>;
 };
 
 export type ArticleAuthorsMutation = {
@@ -520,12 +588,18 @@ export type CategoryMutation = {
   description?: InputMaybe<Scalars['String']>;
 };
 
+export type PagesMutation = {
+  title?: InputMaybe<Scalars['String']>;
+  slug?: InputMaybe<Scalars['String']>;
+  text?: InputMaybe<Scalars['JSON']>;
+};
+
 export type GetArticleQueryVariables = Exact<{
   relativePath: Scalars['String'];
 }>;
 
 
-export type GetArticleQuery = { __typename?: 'Query', article: { __typename?: 'Article', title?: string | null, slug?: string | null, image?: string | null, subtitle?: string | null, date?: string | null, description?: string | null, body?: any | null, authors?: Array<{ __typename?: 'ArticleAuthors', author?: { __typename?: 'Author', title?: string | null, first_name?: string | null, twitter?: string | null, image?: string | null, bio?: string | null } | null } | null> | null, categories?: Array<{ __typename?: 'ArticleCategories', category?: { __typename?: 'Category', title?: string | null } | null } | null> | null } };
+export type GetArticleQuery = { __typename?: 'Query', article: { __typename?: 'Article', title: string, slug?: string | null, image?: string | null, subtitle?: string | null, date?: string | null, description?: string | null, body?: any | null, authors?: Array<{ __typename?: 'ArticleAuthors', author?: { __typename?: 'Author', title?: string | null, first_name?: string | null, twitter?: string | null, image?: string | null, bio?: string | null } | null } | null> | null, categories?: Array<{ __typename?: 'ArticleCategories', category?: { __typename?: 'Category', title?: string | null } | null } | null> | null } };
 
 export type GetCategoryQueryVariables = Exact<{
   relativePath?: InputMaybe<Scalars['String']>;
@@ -539,32 +613,34 @@ export type GetArticlesByCategoryQueryVariables = Exact<{
 }>;
 
 
-export type GetArticlesByCategoryQuery = { __typename?: 'Query', articleConnection: { __typename?: 'ArticleConnection', edges?: Array<{ __typename?: 'ArticleConnectionEdges', node?: { __typename?: 'Article', title?: string | null, slug?: string | null, image?: string | null, _sys: { __typename?: 'SystemInfo', filename: string }, categories?: Array<{ __typename?: 'ArticleCategories', category?: { __typename?: 'Category', title?: string | null, slug?: string | null, description?: string | null } | null } | null> | null, authors?: Array<{ __typename?: 'ArticleAuthors', author?: { __typename?: 'Author', title?: string | null } | null } | null> | null } | null } | null> | null } };
+export type GetArticlesByCategoryQuery = { __typename?: 'Query', articleConnection: { __typename?: 'ArticleConnection', edges?: Array<{ __typename?: 'ArticleConnectionEdges', node?: { __typename?: 'Article', title: string, slug?: string | null, image?: string | null, _sys: { __typename?: 'SystemInfo', filename: string }, categories?: Array<{ __typename?: 'ArticleCategories', category?: { __typename?: 'Category', title?: string | null, slug?: string | null, description?: string | null } | null } | null> | null, authors?: Array<{ __typename?: 'ArticleAuthors', author?: { __typename?: 'Author', title?: string | null } | null } | null> | null } | null } | null> | null } };
 
 export type GetArticlesByAuthorQueryVariables = Exact<{
   author?: InputMaybe<Scalars['String']>;
 }>;
 
 
-export type GetArticlesByAuthorQuery = { __typename?: 'Query', articleConnection: { __typename?: 'ArticleConnection', edges?: Array<{ __typename?: 'ArticleConnectionEdges', node?: { __typename?: 'Article', title?: string | null, slug?: string | null, image?: string | null, _sys: { __typename?: 'SystemInfo', filename: string }, categories?: Array<{ __typename?: 'ArticleCategories', category?: { __typename?: 'Category', title?: string | null, slug?: string | null, description?: string | null } | null } | null> | null, authors?: Array<{ __typename?: 'ArticleAuthors', author?: { __typename?: 'Author', title?: string | null } | null } | null> | null } | null } | null> | null } };
+export type GetArticlesByAuthorQuery = { __typename?: 'Query', articleConnection: { __typename?: 'ArticleConnection', edges?: Array<{ __typename?: 'ArticleConnectionEdges', node?: { __typename?: 'Article', title: string, slug?: string | null, image?: string | null, _sys: { __typename?: 'SystemInfo', filename: string }, categories?: Array<{ __typename?: 'ArticleCategories', category?: { __typename?: 'Category', title?: string | null, slug?: string | null, description?: string | null } | null } | null> | null, authors?: Array<{ __typename?: 'ArticleAuthors', author?: { __typename?: 'Author', title?: string | null } | null } | null> | null } | null } | null> | null } };
 
-export type ArticlePartsFragment = { __typename?: 'Article', title?: string | null, subtitle?: string | null, slug?: string | null, image?: string | null, date?: string | null, description?: string | null, featured?: boolean | null, body?: any | null, authors?: Array<{ __typename: 'ArticleAuthors', author?: { __typename?: 'Author', id: string } | null } | null> | null, categories?: Array<{ __typename: 'ArticleCategories', category?: { __typename?: 'Category', id: string } | null } | null> | null };
+export type ArticlePartsFragment = { __typename?: 'Article', title: string, subtitle?: string | null, slug?: string | null, image?: string | null, date?: string | null, description?: string | null, featured?: boolean | null, body?: any | null, authors?: Array<{ __typename: 'ArticleAuthors', author?: { __typename?: 'Author', id: string } | null } | null> | null, categories?: Array<{ __typename: 'ArticleCategories', category?: { __typename?: 'Category', id: string } | null } | null> | null };
 
 export type AuthorPartsFragment = { __typename?: 'Author', title?: string | null, slug?: string | null, email?: string | null, first_name?: string | null, twitter?: string | null, github?: string | null, linkedin?: string | null, bio?: string | null, image?: string | null, avif?: string | null, avif_base64?: string | null, image_base64?: string | null };
 
 export type CategoryPartsFragment = { __typename?: 'Category', title?: string | null, slug?: string | null, description?: string | null, related?: Array<{ __typename: 'CategoryRelated', category?: { __typename?: 'Category', id: string } | null } | null> | null };
+
+export type PagesPartsFragment = { __typename?: 'Pages', title: string, slug?: string | null, text?: any | null };
 
 export type ArticleQueryVariables = Exact<{
   relativePath: Scalars['String'];
 }>;
 
 
-export type ArticleQuery = { __typename?: 'Query', article: { __typename?: 'Article', id: string, title?: string | null, subtitle?: string | null, slug?: string | null, image?: string | null, date?: string | null, description?: string | null, featured?: boolean | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, authors?: Array<{ __typename: 'ArticleAuthors', author?: { __typename?: 'Author', id: string } | null } | null> | null, categories?: Array<{ __typename: 'ArticleCategories', category?: { __typename?: 'Category', id: string } | null } | null> | null } };
+export type ArticleQuery = { __typename?: 'Query', article: { __typename?: 'Article', id: string, title: string, subtitle?: string | null, slug?: string | null, image?: string | null, date?: string | null, description?: string | null, featured?: boolean | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, authors?: Array<{ __typename: 'ArticleAuthors', author?: { __typename?: 'Author', id: string } | null } | null> | null, categories?: Array<{ __typename: 'ArticleCategories', category?: { __typename?: 'Category', id: string } | null } | null> | null } };
 
 export type ArticleConnectionQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ArticleConnectionQuery = { __typename?: 'Query', articleConnection: { __typename?: 'ArticleConnection', totalCount: number, edges?: Array<{ __typename?: 'ArticleConnectionEdges', node?: { __typename?: 'Article', id: string, title?: string | null, subtitle?: string | null, slug?: string | null, image?: string | null, date?: string | null, description?: string | null, featured?: boolean | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, authors?: Array<{ __typename: 'ArticleAuthors', author?: { __typename?: 'Author', id: string } | null } | null> | null, categories?: Array<{ __typename: 'ArticleCategories', category?: { __typename?: 'Category', id: string } | null } | null> | null } | null } | null> | null } };
+export type ArticleConnectionQuery = { __typename?: 'Query', articleConnection: { __typename?: 'ArticleConnection', totalCount: number, edges?: Array<{ __typename?: 'ArticleConnectionEdges', node?: { __typename?: 'Article', id: string, title: string, subtitle?: string | null, slug?: string | null, image?: string | null, date?: string | null, description?: string | null, featured?: boolean | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, authors?: Array<{ __typename: 'ArticleAuthors', author?: { __typename?: 'Author', id: string } | null } | null> | null, categories?: Array<{ __typename: 'ArticleCategories', category?: { __typename?: 'Category', id: string } | null } | null> | null } | null } | null> | null } };
 
 export type AuthorQueryVariables = Exact<{
   relativePath: Scalars['String'];
@@ -589,6 +665,18 @@ export type CategoryConnectionQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type CategoryConnectionQuery = { __typename?: 'Query', categoryConnection: { __typename?: 'CategoryConnection', totalCount: number, edges?: Array<{ __typename?: 'CategoryConnectionEdges', node?: { __typename?: 'Category', id: string, title?: string | null, slug?: string | null, description?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, related?: Array<{ __typename: 'CategoryRelated', category?: { __typename?: 'Category', id: string } | null } | null> | null } | null } | null> | null } };
+
+export type PagesQueryVariables = Exact<{
+  relativePath: Scalars['String'];
+}>;
+
+
+export type PagesQuery = { __typename?: 'Query', pages: { __typename?: 'Pages', id: string, title: string, slug?: string | null, text?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+
+export type PagesConnectionQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type PagesConnectionQuery = { __typename?: 'Query', pagesConnection: { __typename?: 'PagesConnection', totalCount: number, edges?: Array<{ __typename?: 'PagesConnectionEdges', node?: { __typename?: 'Pages', id: string, title: string, slug?: string | null, text?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export const ArticlePartsFragmentDoc = gql`
     fragment ArticleParts on Article {
@@ -647,6 +735,13 @@ export const CategoryPartsFragmentDoc = gql`
     }
   }
   description
+}
+    `;
+export const PagesPartsFragmentDoc = gql`
+    fragment PagesParts on Pages {
+  title
+  slug
+  text
 }
     `;
 export const GetArticleDocument = gql`
@@ -876,6 +971,43 @@ export const CategoryConnectionDocument = gql`
   }
 }
     ${CategoryPartsFragmentDoc}`;
+export const PagesDocument = gql`
+    query pages($relativePath: String!) {
+  pages(relativePath: $relativePath) {
+    _sys {
+      filename
+      basename
+      breadcrumbs
+      path
+      relativePath
+      extension
+    }
+    id
+    ...PagesParts
+  }
+}
+    ${PagesPartsFragmentDoc}`;
+export const PagesConnectionDocument = gql`
+    query pagesConnection {
+  pagesConnection {
+    totalCount
+    edges {
+      node {
+        id
+        _sys {
+          filename
+          basename
+          breadcrumbs
+          path
+          relativePath
+          extension
+        }
+        ...PagesParts
+      }
+    }
+  }
+}
+    ${PagesPartsFragmentDoc}`;
 export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) => Promise<R>
   export function getSdk<C>(requester: Requester<C>) {
     return {
@@ -908,6 +1040,12 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
       },
     categoryConnection(variables?: CategoryConnectionQueryVariables, options?: C): Promise<{data: CategoryConnectionQuery, variables: CategoryConnectionQueryVariables, query: string}> {
         return requester<{data: CategoryConnectionQuery, variables: CategoryConnectionQueryVariables, query: string}, CategoryConnectionQueryVariables>(CategoryConnectionDocument, variables, options);
+      },
+    pages(variables: PagesQueryVariables, options?: C): Promise<{data: PagesQuery, variables: PagesQueryVariables, query: string}> {
+        return requester<{data: PagesQuery, variables: PagesQueryVariables, query: string}, PagesQueryVariables>(PagesDocument, variables, options);
+      },
+    pagesConnection(variables?: PagesConnectionQueryVariables, options?: C): Promise<{data: PagesConnectionQuery, variables: PagesConnectionQueryVariables, query: string}> {
+        return requester<{data: PagesConnectionQuery, variables: PagesConnectionQueryVariables, query: string}, PagesConnectionQueryVariables>(PagesConnectionDocument, variables, options);
       }
     };
   }

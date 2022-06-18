@@ -12,6 +12,8 @@ const article: TinaCloudCollection = {
       type: "string",
       label: "Title",
       name: "title",
+      isTitle: true,
+      required: true,
     },
     {
       type: "string",

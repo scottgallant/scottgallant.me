@@ -53,12 +53,15 @@ type Query {
   authorConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: AuthorFilter): AuthorConnection!
   category(relativePath: String): Category!
   categoryConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: CategoryFilter): CategoryConnection!
+  pages(relativePath: String): Pages!
+  pagesConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: PagesFilter): PagesConnection!
 }
 
 input DocumentFilter {
   article: ArticleFilter
   author: AuthorFilter
   category: CategoryFilter
+  pages: PagesFilter
 }
 
 type DocumentConnectionEdges {
@@ -84,7 +87,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter): DocumentConnection!
 }
 
-union DocumentNode = Article | Author | Category
+union DocumentNode = Article | Author | Category | Pages
 
 union ArticleAuthorsAuthor = Author
 
@@ -99,7 +102,7 @@ type ArticleCategories {
 }
 
 type Article implements Node & Document {
-  title: String
+  title: String!
   subtitle: String
   slug: String
   authors: [ArticleAuthors]
@@ -280,6 +283,38 @@ type CategoryConnection implements Connection {
   edges: [CategoryConnectionEdges]
 }
 
+type Pages implements Node & Document {
+  title: String!
+  slug: String
+  text: JSON
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input RichTextFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+}
+
+input PagesFilter {
+  title: StringFilter
+  slug: StringFilter
+  text: RichTextFilter
+}
+
+type PagesConnectionEdges {
+  cursor: String!
+  node: Pages
+}
+
+type PagesConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [PagesConnectionEdges]
+}
+
 type Mutation {
   addPendingDocument(collection: String!, relativePath: String!, template: String): DocumentNode!
   updateDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
@@ -291,12 +326,15 @@ type Mutation {
   createAuthor(relativePath: String!, params: AuthorMutation!): Author!
   updateCategory(relativePath: String!, params: CategoryMutation!): Category!
   createCategory(relativePath: String!, params: CategoryMutation!): Category!
+  updatePages(relativePath: String!, params: PagesMutation!): Pages!
+  createPages(relativePath: String!, params: PagesMutation!): Pages!
 }
 
 input DocumentMutation {
   article: ArticleMutation
   author: AuthorMutation
   category: CategoryMutation
+  pages: PagesMutation
 }
 
 input ArticleAuthorsMutation {
@@ -344,6 +382,12 @@ input CategoryMutation {
   slug: String
   related: [CategoryRelatedMutation]
   description: String
+}
+
+input PagesMutation {
+  title: String
+  slug: String
+  text: JSON
 }
 
 schema {

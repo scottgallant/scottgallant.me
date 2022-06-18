@@ -10,7 +10,7 @@ export const Layout = (props) => {
     <div className="relative overflow-hidden dark:bg-gray-800 dark:text-gray-300">
       <Head>
         <title>Scott Gallant </title>
-        <meta name="description" content="A TinaCMS Application" />
+        <meta name="description" content="A personal blog" />
         <link rel="icon" href="/favicon.ico" />
         <script src="https://platform.twitter.com/widgets.js" charset="utf-8" defer={true}></script>
       </Head>

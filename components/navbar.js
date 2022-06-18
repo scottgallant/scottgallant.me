@@ -32,25 +32,24 @@ export default function Navbar() {
                             </div>
                             <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                                    {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
                                     <a
                                         href="/"
                                         className={router.pathname == "/" ? "border-gray-500 border-b-2 text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium  dark:text-white" : "hover:border-gray-200 hover:border-b-2 border-b-2 border-transparent text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium  dark:text-white"}
                                     >
                                         Home
                                     </a>
-                                    {/* <a
-                                        href="/categories"
+                                    <a
+                                        href="/about"
                                         className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                                     >
-                                        Categories
-                                    </a>*/
-                                        <a
-                                            href="/authors/scott-gallant"
-                                            className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-                                        >
-                                            About
-                                        </a>}
+                                        About
+                                    </a>
+                                    <a
+                                        href="/articles"
+                                        className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                                    >
+                                        Articles
+                                    </a>
                                 </div>
                             </div>
                             <SocialLinks />

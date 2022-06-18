@@ -5,7 +5,7 @@ export const Tweet = ({ tweetId }) => {
 
   return (
 
-    < TweetEmbed tweetId={`${tweetId}`} options={{ theme: 'dark', align: 'center' }} />
+    < TweetEmbed tweetId={`${tweetId}`} options={{ align: 'center' }} />
   );
 };
 
