@@ -6,13 +6,16 @@ import { formatDate } from "../../utils/helpers";
 export default function Articles({ articles }) {
   return (
     <Layout>
-      <div className="max-w-3xl mx-auto sm:px-6 px-6 md:px-0 min-h-screen">
-        <h1 className="text-gray-800 text-center pb-12">Articles</h1>
+      <div className="max-w-2xl mx-auto sm:px-6 px-6 md:px-0 min-h-screen">
+        <h1 className="text-gray-800 text-center pb-12 font-serif">Articles</h1>
         <ul>
           {articles.map((article) => (
-            <li key={article.node._sys.filename}>
+            <li key={article.node._sys.filename} className="mb-4">
               <Link href={`/articles/${article.node._sys.filename}`}>
-                <a className="text-lg block  hover:bg-gray-100 dark:hover:bg-gray-900 rounded-md py-2 px-2 ">{article.node.title} &nbsp; <date className="text-gray-400 text-sm italic"> • {formatDate(article.node.date)}</date> </a>
+                <a className="block hover:bg-gray-100 dark:hover:bg-gray-900 rounded-md py-2 px-5"><span className="font-serif text-2xl">{article.node.title}</span> &nbsp;
+                  <time className="text-gray-400 text-sm italic float-right font-sans"> {formatDate(article.node.date)}</time>
+                  <br /><span className="text-md font-light">{article.node.subtitle}</span>
+                </a>
               </Link>
             </li>
           ))}

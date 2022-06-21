@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 
-
+/* 
 @font-face {
     font-family: 'charterbold_italic';
     src: url('/fonts/charter_bold_italic-webfont.eot');
@@ -43,23 +43,23 @@
     font-weight: normal;
     font-style: normal;
 
-}
+} */
 
 html {
     /* font-family: 'Spectral', serif; */
     /* font-family: 'Inter', sans-serif; */
-    font-weight: 300;
+    /* font-weight: 300; */
 }
 
 h1,
 h2,
 h3,
 h4 {
-    font-family: 'Libre Baskerville', serif;
+    /* font-family: 'Libre Baskerville', serif; */
     /* font-family: 'charterregular', serif; */
-    font-weight: 100 !important;
+    /* font-weight: 100 !important; */
     /* color: theme('colors.stone.800'); */
-    line-height: 3em;
+    /* line-height: 3em; */
 }
 
 h1 {
@@ -80,7 +80,7 @@ h1 {
 }
 
 main.prose {
-    font-family: 'Libre Baskerville', serif;
+    /* font-family: 'Libre Baskerville', serif; */
     /* color: theme('colors.stone.800'); */
     font-size: 1.15em;
     line-height: 1.85em;
@@ -110,12 +110,6 @@ main.prose blockquote {
 }
 
 */
-
-
-.font-serif {
-    font-family: 'Libre Baskerville', serif;
-}
-
 
 .copy a {
     color: blue;

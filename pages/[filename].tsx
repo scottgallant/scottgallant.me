@@ -15,7 +15,7 @@ export default function Page(props, articles) {
         return (
             <Layout>
                 <div className="max-w-3xl mx-auto sm:px-6 px-6 md:px-0 min-h-screen">
-                    <h1 className="text-gray-800 text-center pb-12">{data.pages.title}</h1>
+                    <h1 className="font-serif text-gray-800 text-center pb-12">{data.pages.title}</h1>
                     <p className="copy prose-xl text-2xl font-light leading-relaxed text-gray-700 dark:text-gray-300">
                         <TinaMarkdown
                             content={data.pages.text}

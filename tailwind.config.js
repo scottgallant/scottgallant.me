@@ -7,6 +7,9 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    fontFamily: {
+      'serif': ['Libre Baskerville', 'georgia', 'serif'],
+    },
     colors: {
       transparent: 'transparent',
       current: 'currentColor',

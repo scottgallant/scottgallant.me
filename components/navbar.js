@@ -34,19 +34,25 @@ export default function Navbar() {
                                 <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                                     <a
                                         href="/"
-                                        className={router.pathname == "/" ? "border-gray-500 border-b-2 text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium  dark:text-white" : "hover:border-gray-200 hover:border-b-2 border-b-2 border-transparent text-gray-900 inline-flex items-center px-1 pt-1 text-sm font-medium  dark:text-white"}
+                                        className={router.asPath == "/" || router.asPath == "/home" ?
+                                            "text-gray-900 dark:text-white border-gray-400 border-b-2 inline-flex items-center px-1 pt-1 text-sm font-medium" :
+                                            "text-gray-500 dark:text-gray-400 dark:hover:text-white hover:border-gray-400 dark:hover:border-gray-600 hover:border-b-2 border-b-2 border-transparent inline-flex items-center px-1 pt-1 text-sm font-medium"}
                                     >
                                         Home
                                     </a>
                                     <a
                                         href="/about"
-                                        className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                                        className={router.asPath == "/about" ?
+                                            "text-gray-900 dark:text-white border-gray-400 border-b-2 inline-flex items-center px-1 pt-1 text-sm font-medium" :
+                                            "text-gray-500 dark:text-gray-400 dark:hover:text-white hover:border-gray-400 dark:hover:border-gray-600 hover:border-b-2 border-b-2 border-transparent inline-flex items-center px-1 pt-1 text-sm font-medium"}
                                     >
                                         About
                                     </a>
                                     <a
                                         href="/articles"
-                                        className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                                        className={router.asPath == "/articles" ?
+                                            "text-gray-900 dark:text-white border-gray-400 border-b-2 inline-flex items-center px-1 pt-1 text-sm font-medium" :
+                                            "text-gray-500 dark:text-gray-400 dark:hover:text-white hover:border-gray-400 dark:hover:border-gray-600 hover:border-b-2 border-b-2 border-transparent inline-flex items-center px-1 pt-1 text-sm font-medium"}
                                     >
                                         Articles
                                     </a>
@@ -57,7 +63,7 @@ export default function Navbar() {
                     </div>
 
                     <Disclosure.Panel className="sm:hidden">
-                        <div className="pt-2 pb-4 space-y-1">
+                        <div className="pt-2 pb-4">
                             {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
                             <Disclosure.Button
                                 as="a"
@@ -66,16 +72,21 @@ export default function Navbar() {
                             >
                                 Home
                             </Disclosure.Button>
-                        </div>
-                        {/* <div className="pt-2 pb-4 space-y-1">
                             <Disclosure.Button
                                 as="a"
-                                href="/categories"
-                                className="block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+                                href="/about"
+                                className="bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
                             >
-                                Categories
+                                About
                             </Disclosure.Button>
-                        </div> */}
+                            <Disclosure.Button
+                                as="a"
+                                href="/articles"
+                                className="bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+                            >
+                                Articles
+                            </Disclosure.Button>
+                        </div>
                     </Disclosure.Panel>
                 </>
             )
