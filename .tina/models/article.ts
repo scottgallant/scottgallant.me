@@ -107,12 +107,31 @@ const article: TinaCloudCollection = {
           label: "Pull Quote",
           fields: [
             {
+              name: "text",
+              label: "Text",
+              type: "string",
               ui: {
                 defaultValue: "This is my quote",
+                component: "textarea",
               },
-              name: "children",
-              label: "Children",
+            },
+            {
+              name: "author",
+              label: "Author",
+              description: "Optional",
               type: "string",
+              ui: {
+                defaultValue: "Herman Melville",
+              },
+            },
+            {
+              name: "authorLink",
+              label: "Author Link",
+              description: "Optional",
+              type: "string",
+              ui: {
+                defaultValue: "https://en.wikipedia.org/wiki/Herman_Melville",
+              },
             },
           ],
         },

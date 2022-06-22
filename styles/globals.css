@@ -97,6 +97,18 @@ main.prose blockquote {
     color: theme('colors.gray.200');
 }
 
+.prose blockquote p::before {
+    content: "";
+}
+
+.prose blockquote {
+    margin-bottom: 0;
+}
+
+.prose blockquote *:last-child {
+    margin-bottom: 0;
+}
+
 /* 
 :root {
 
