@@ -90,28 +90,32 @@ type Collection {
 
 union DocumentNode = Article | Author | Category | Pages
 
-union ArticleAuthorsAuthor = Author
+union ArticleAdvancedAuthorsAuthor = Author
 
-type ArticleAuthors {
-  author: ArticleAuthorsAuthor
+type ArticleAdvancedAuthors {
+  author: ArticleAdvancedAuthorsAuthor
 }
 
-union ArticleCategoriesCategory = Category
+union ArticleAdvancedCategoriesCategory = Category
 
-type ArticleCategories {
-  category: ArticleCategoriesCategory
+type ArticleAdvancedCategories {
+  category: ArticleAdvancedCategoriesCategory
+}
+
+type ArticleAdvanced {
+  slug: String
+  authors: [ArticleAdvancedAuthors]
+  image: String
+  date: String
+  description: String
+  categories: [ArticleAdvancedCategories]
+  featured: Boolean
 }
 
 type Article implements Node & Document {
   title: String!
   subtitle: String
-  slug: String
-  authors: [ArticleAuthors]
-  image: String
-  date: String
-  description: String
-  categories: [ArticleCategories]
-  featured: Boolean
+  advanced: ArticleAdvanced
   body: JSON
   id: ID!
   _sys: SystemInfo!
@@ -125,12 +129,19 @@ input StringFilter {
   in: [String]
 }
 
-input ArticleAuthorsAuthorFilter {
+input ArticleAdvancedAuthorsAuthorFilter {
   author: AuthorFilter
 }
 
-input ArticleAuthorsFilter {
-  author: ArticleAuthorsAuthorFilter
+input ArticleAdvancedAuthorsFilter {
+  author: ArticleAdvancedAuthorsAuthorFilter
+}
+
+input ImageFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+  in: [String]
 }
 
 input DatetimeFilter {
@@ -141,17 +152,27 @@ input DatetimeFilter {
   in: [String]
 }
 
-input ArticleCategoriesCategoryFilter {
+input ArticleAdvancedCategoriesCategoryFilter {
   category: CategoryFilter
 }
 
-input ArticleCategoriesFilter {
-  category: ArticleCategoriesCategoryFilter
+input ArticleAdvancedCategoriesFilter {
+  category: ArticleAdvancedCategoriesCategoryFilter
 }
 
 input BooleanFilter {
   eq: Boolean
   exists: Boolean
+}
+
+input ArticleAdvancedFilter {
+  slug: StringFilter
+  authors: ArticleAdvancedAuthorsFilter
+  image: ImageFilter
+  date: DatetimeFilter
+  description: StringFilter
+  categories: ArticleAdvancedCategoriesFilter
+  featured: BooleanFilter
 }
 
 input ArticleBodyCaptionedImageFilter {
@@ -183,20 +204,14 @@ input ArticleBodyPullQuoteFilter {
 input ArticleBodyFilter {
   CaptionedImage: ArticleBodyCaptionedImageFilter
   Tweet: ArticleBodyTweetFilter
-  textBox: ArticleBodyTextBoxFilter
+  TextBox: ArticleBodyTextBoxFilter
   PullQuote: ArticleBodyPullQuoteFilter
 }
 
 input ArticleFilter {
   title: StringFilter
   subtitle: StringFilter
-  slug: StringFilter
-  authors: ArticleAuthorsFilter
-  image: StringFilter
-  date: DatetimeFilter
-  description: StringFilter
-  categories: ArticleCategoriesFilter
-  featured: BooleanFilter
+  advanced: ArticleAdvancedFilter
   body: ArticleBodyFilter
 }
 
@@ -345,24 +360,28 @@ input DocumentMutation {
   pages: PagesMutation
 }
 
-input ArticleAuthorsMutation {
+input ArticleAdvancedAuthorsMutation {
   author: String
 }
 
-input ArticleCategoriesMutation {
+input ArticleAdvancedCategoriesMutation {
   category: String
+}
+
+input ArticleAdvancedMutation {
+  slug: String
+  authors: [ArticleAdvancedAuthorsMutation]
+  image: String
+  date: String
+  description: String
+  categories: [ArticleAdvancedCategoriesMutation]
+  featured: Boolean
 }
 
 input ArticleMutation {
   title: String
   subtitle: String
-  slug: String
-  authors: [ArticleAuthorsMutation]
-  image: String
-  date: String
-  description: String
-  categories: [ArticleCategoriesMutation]
-  featured: Boolean
+  advanced: ArticleAdvancedMutation
   body: JSON
 }
 

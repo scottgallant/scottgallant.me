@@ -1,0 +1,31 @@
+fragment ArticlePartsOverride on Article {
+  title
+  subtitle
+  advanced {
+    __typename
+    slug
+    authors {
+      __typename
+      author {
+        ...AuthorParts
+        ... on Document {
+          id
+        }
+      }
+    }
+    image
+    date
+    description
+    categories {
+      __typename
+      category {
+        ...CategoryParts
+        ... on Document {
+          id
+        }
+      }
+    }
+    featured
+  }
+  body
+}

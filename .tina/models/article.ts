@@ -21,34 +21,41 @@ const article: TinaCloudCollection = {
       name: "subtitle",
     },
     {
-      type: "string",
-      label: "Slug",
-      name: "slug",
-    },
-    authorReferenceField,
-    {
-      type: "string",
-      label: "Image",
-      name: "image",
-    },
-    {
-      type: "datetime",
-      label: "Date",
-      name: "date",
-    },
-    {
-      type: "string",
-      label: "Description",
-      name: "description",
-      ui: {
-        component: "textarea",
-      },
-    },
-    categoriesReferenceField,
-    {
-      type: "boolean",
-      label: "Featured",
-      name: "featured",
+      name: "advanced",
+      label: "Advanced",
+      type: "object",
+      fields: [
+        {
+          type: "string",
+          label: "Slug",
+          name: "slug",
+        },
+        authorReferenceField,
+        {
+          type: "image",
+          label: "Image",
+          name: "image",
+        },
+        {
+          type: "datetime",
+          label: "Date",
+          name: "date",
+        },
+        {
+          type: "string",
+          label: "Description",
+          name: "description",
+          ui: {
+            component: "textarea",
+          },
+        },
+        categoriesReferenceField,
+        {
+          type: "boolean",
+          label: "Featured",
+          name: "featured",
+        },
+      ]
     },
     {
       name: "body",
@@ -103,7 +110,7 @@ const article: TinaCloudCollection = {
           ],
         },
         {
-          name: "textBox",
+          name: "TextBox",
           label: "Text Box",
           fields: [
             {

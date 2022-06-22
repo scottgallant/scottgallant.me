@@ -26,10 +26,10 @@ export default function Article(props) {
 
   return (
     <Layout>
-      {data.article.image &&
+      {data.article.advanced.image &&
         <div className="h-80 relative ">
           <Image
-            src={data.article.image}
+            src={data.article.advanced.image}
             alt="Facebook Vs the Open Web"
             layout='fill'
             objectFit='cover'
@@ -40,7 +40,7 @@ export default function Article(props) {
       <div className="max-w-3xl mx-auto sm:px-6 px-6 md:px-0">
         <h1 className="text-gray-800 font-serif">{data.article.title}</h1>
         <p className="subtitle text-2xl font-light leading-relaxed text-gray-600 dark:text-gray-300">{data.article.subtitle}</p>
-        <p className="font-sans text-xs text-gray-500 dark:text-gray-500"><time>{formatDate(data.article.date)}</time></p>
+        <p className="font-sans text-xs text-gray-500 dark:text-gray-500"><time>{formatDate(data.article.advanced.date)}</time></p>
         <main className=" font-serif mt-10 prose prose-xl text-gray-600 border-gray-200 border-t-2 pt-10 dark:text-white">
           <TinaMarkdown components={components} content={data.article.body} />
         </main>

@@ -1,45 +1,19 @@
 query getArticle($relativePath: String!) {
   article(relativePath: $relativePath) {
-    title
-    slug
-    authors {
-      author {
-        ... on Author {
-          title
-          first_name
-          twitter
-          image
-          bio
-        }
-      }
-    }
-    image
-    subtitle
-    date
-    description
-    categories {
-      category {
-        ... on Category {
-          title
-        }
-      }
-    }
-    body
+    ...ArticlePartsOverride
   }
 }
 
 query getCategory($relativePath: String) {
   category(relativePath: $relativePath) {
-    title
-    slug
-    description
+    ...CategoryParts
     related {
       category {
         ... on Category {
           _sys {
             filename
           }
-          title
+          ...CategoryParts
         }
       }
     }
@@ -49,7 +23,7 @@ query getCategory($relativePath: String) {
 query getArticlesByCategory($category: String) {
   articleConnection(
     filter: {
-      categories: { category: { category: { slug: { eq: $category } } } }
+      advanced:{ categories: { category: { category: { slug: { eq: $category } } } } } 
     }
   ) {
     edges {
@@ -57,25 +31,7 @@ query getArticlesByCategory($category: String) {
         _sys {
           filename
         }
-        title
-        slug
-        image
-        categories {
-          category {
-            ... on Category {
-              title
-              slug
-              description
-            }
-          }
-        }
-        authors {
-          author {
-            ... on Author {
-              title
-            }
-          }
-        }
+        ...ArticlePartsOverride
       }
     }
   }
@@ -83,32 +39,14 @@ query getArticlesByCategory($category: String) {
 
 query getArticlesByAuthor($author: String) {
   articleConnection(
-    filter: { authors: { author: { author: { slug: { eq: $author } } } } }
+    filter: { advanced: { authors: { author: { author: { slug: { eq: $author } } } } } }
   ) {
     edges {
       node {
         _sys {
           filename
         }
-        title
-        slug
-        image
-        categories {
-          category {
-            ... on Category {
-              title
-              slug
-              description
-            }
-          }
-        }
-        authors {
-          author {
-            ... on Author {
-              title
-            }
-          }
-        }
+        ...ArticlePartsOverride
       }
     }
   }

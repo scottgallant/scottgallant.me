@@ -13,7 +13,7 @@ export default function Articles({ articles }) {
             <li key={article.node._sys.filename} className="mb-4">
               <Link href={`/articles/${article.node._sys.filename}`}>
                 <a className="block hover:bg-gray-100 dark:hover:bg-gray-900 rounded-md p-5"><span className="font-serif text-2xl">{article.node.title}</span> &nbsp;
-                  <time className="text-gray-400 text-sm italic float-right font-sans"> {formatDate(article.node.date)}</time>
+                  <time className="text-gray-400 text-sm italic float-right font-sans"> {formatDate(article.node.advanced.date)}</time>
                   <br /><span className="text-md font-light">{article.node.subtitle}</span>
                 </a>
               </Link>
