@@ -103,6 +103,18 @@ const article: TinaCloudCollection = {
           ],
         },
         {
+          name: "textBox",
+          label: "Text Box",
+          fields: [
+            {
+              name: "text",
+              label: "Text",
+              type: "rich-text",
+              isBody: false,
+            },
+          ],
+        },
+        {
           name: "PullQuote",
           label: "Pull Quote",
           fields: [

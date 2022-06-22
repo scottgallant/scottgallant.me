@@ -164,6 +164,16 @@ input ArticleBodyTweetFilter {
   tweetId: StringFilter
 }
 
+input RichTextFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+}
+
+input ArticleBodyTextBoxFilter {
+  text: RichTextFilter
+}
+
 input ArticleBodyPullQuoteFilter {
   text: StringFilter
   author: StringFilter
@@ -173,6 +183,7 @@ input ArticleBodyPullQuoteFilter {
 input ArticleBodyFilter {
   CaptionedImage: ArticleBodyCaptionedImageFilter
   Tweet: ArticleBodyTweetFilter
+  textBox: ArticleBodyTextBoxFilter
   PullQuote: ArticleBodyPullQuoteFilter
 }
 
@@ -293,12 +304,6 @@ type Pages implements Node & Document {
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
-}
-
-input RichTextFilter {
-  startsWith: String
-  eq: String
-  exists: Boolean
 }
 
 input PagesFilter {

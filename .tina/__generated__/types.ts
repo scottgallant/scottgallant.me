@@ -286,6 +286,16 @@ export type ArticleBodyTweetFilter = {
   tweetId?: InputMaybe<StringFilter>;
 };
 
+export type RichTextFilter = {
+  startsWith?: InputMaybe<Scalars['String']>;
+  eq?: InputMaybe<Scalars['String']>;
+  exists?: InputMaybe<Scalars['Boolean']>;
+};
+
+export type ArticleBodyTextBoxFilter = {
+  text?: InputMaybe<RichTextFilter>;
+};
+
 export type ArticleBodyPullQuoteFilter = {
   text?: InputMaybe<StringFilter>;
   author?: InputMaybe<StringFilter>;
@@ -295,6 +305,7 @@ export type ArticleBodyPullQuoteFilter = {
 export type ArticleBodyFilter = {
   CaptionedImage?: InputMaybe<ArticleBodyCaptionedImageFilter>;
   Tweet?: InputMaybe<ArticleBodyTweetFilter>;
+  textBox?: InputMaybe<ArticleBodyTextBoxFilter>;
   PullQuote?: InputMaybe<ArticleBodyPullQuoteFilter>;
 };
 
@@ -425,12 +436,6 @@ export type Pages = Node & Document & {
   id: Scalars['ID'];
   _sys: SystemInfo;
   _values: Scalars['JSON'];
-};
-
-export type RichTextFilter = {
-  startsWith?: InputMaybe<Scalars['String']>;
-  eq?: InputMaybe<Scalars['String']>;
-  exists?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type PagesFilter = {
