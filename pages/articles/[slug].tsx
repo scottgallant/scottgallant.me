@@ -39,8 +39,8 @@ export default function Article(props) {
       <p className="font-sans text-xs text-gray-500">{data.article.imageSource}</p>
       <div className="max-w-3xl mx-auto sm:px-6 px-6 md:px-0">
         <h1 className="text-gray-800 font-serif">{data.article.title}</h1>
-        <p className="subtitle text-2xl font-light leading-relaxed text-gray-600 dark:text-gray-300">{data.article.subtitle}</p>
-        <p className="font-sans text-xs text-gray-500 dark:text-gray-500"><time>{formatDate(data.article.advanced.date)}</time></p>
+        <p className="subtitle text-2xl font-light leading-relaxed text-gray-500 dark:text-gray-300">{data.article.subtitle}</p>
+        <p className="mt-3 font-sans text-xs text-gray-400 dark:text-gray-500"><time>{formatDate(data.article.advanced.date)}</time></p>
         <main className=" font-serif mt-10 prose prose-xl text-gray-600 border-gray-200 border-t-2 pt-10 dark:text-white">
           <TinaMarkdown components={components} content={data.article.body} />
         </main>
