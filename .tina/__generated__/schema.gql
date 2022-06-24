@@ -345,7 +345,6 @@ type GlobalHeaderNav {
 }
 
 type GlobalHeader {
-  color: String
   nav: [GlobalHeaderNav]
 }
 
@@ -356,22 +355,18 @@ type GlobalFooterSocial {
   github: String
 }
 
-type GlobalFooter {
-  color: String
-  social: GlobalFooterSocial
+type GlobalFooterNewsetter {
+  enable: Boolean
 }
 
-type GlobalTheme {
-  color: String
-  font: String
-  icon: String
-  darkMode: String
+type GlobalFooter {
+  social: GlobalFooterSocial
+  newsetter: GlobalFooterNewsetter
 }
 
 type Global implements Node & Document {
   header: GlobalHeader
   footer: GlobalFooter
-  theme: GlobalTheme
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
@@ -383,7 +378,6 @@ input GlobalHeaderNavFilter {
 }
 
 input GlobalHeaderFilter {
-  color: StringFilter
   nav: GlobalHeaderNavFilter
 }
 
@@ -394,22 +388,18 @@ input GlobalFooterSocialFilter {
   github: StringFilter
 }
 
-input GlobalFooterFilter {
-  color: StringFilter
-  social: GlobalFooterSocialFilter
+input GlobalFooterNewsetterFilter {
+  enable: BooleanFilter
 }
 
-input GlobalThemeFilter {
-  color: StringFilter
-  font: StringFilter
-  icon: StringFilter
-  darkMode: StringFilter
+input GlobalFooterFilter {
+  social: GlobalFooterSocialFilter
+  newsetter: GlobalFooterNewsetterFilter
 }
 
 input GlobalFilter {
   header: GlobalHeaderFilter
   footer: GlobalFooterFilter
-  theme: GlobalThemeFilter
 }
 
 type GlobalConnectionEdges {
@@ -510,7 +500,6 @@ input GlobalHeaderNavMutation {
 }
 
 input GlobalHeaderMutation {
-  color: String
   nav: [GlobalHeaderNavMutation]
 }
 
@@ -521,22 +510,18 @@ input GlobalFooterSocialMutation {
   github: String
 }
 
-input GlobalFooterMutation {
-  color: String
-  social: GlobalFooterSocialMutation
+input GlobalFooterNewsetterMutation {
+  enable: Boolean
 }
 
-input GlobalThemeMutation {
-  color: String
-  font: String
-  icon: String
-  darkMode: String
+input GlobalFooterMutation {
+  social: GlobalFooterSocialMutation
+  newsetter: GlobalFooterNewsetterMutation
 }
 
 input GlobalMutation {
   header: GlobalHeaderMutation
   footer: GlobalFooterMutation
-  theme: GlobalThemeMutation
 }
 
 schema {

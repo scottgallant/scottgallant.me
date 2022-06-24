@@ -9,18 +9,9 @@ const global: TinaCloudCollection = {
   fields: [
     {
       type: "object",
-      label: "Header",
+      label: "Navigation",
       name: "header",
       fields: [
-        {
-          type: "string",
-          label: "Color",
-          name: "color",
-          options: [
-            { label: "Default", value: "default" },
-            { label: "Primary", value: "primary" },
-          ],
-        },
         {
           type: "object",
           label: "Nav Links",
@@ -56,15 +47,6 @@ const global: TinaCloudCollection = {
       name: "footer",
       fields: [
         {
-          type: "string",
-          label: "Color",
-          name: "color",
-          options: [
-            { label: "Default", value: "default" },
-            { label: "Primary", value: "primary" },
-          ],
-        },
-        {
           type: "object",
           label: "Social Links",
           name: "social",
@@ -91,102 +73,16 @@ const global: TinaCloudCollection = {
             },
           ],
         },
-      ],
-    },
-    {
-      type: "object",
-      label: "Theme",
-      name: "theme",
-      fields: [
         {
-          type: "string",
-          label: "Primary Color",
-          name: "color",
-          options: [
+          type: "object",
+          label: "Newsletter",
+          name: "newsetter",
+          fields: [
             {
-              label: "Blue",
-              value: "blue",
-            },
-            {
-              label: "Teal",
-              value: "teal",
-            },
-            {
-              label: "Green",
-              value: "green",
-            },
-            {
-              label: "Red",
-              value: "red",
-            },
-            {
-              label: "Pink",
-              value: "pink",
-            },
-            {
-              label: "Purple",
-              value: "purple",
-            },
-            {
-              label: "Orange",
-              value: "orange",
-            },
-            {
-              label: "Yellow",
-              value: "yellow",
-            },
-          ],
-        },
-        {
-          type: "string",
-          name: "font",
-          label: "Font Family",
-          options: [
-            {
-              label: "System Sans",
-              value: "sans",
-            },
-            {
-              label: "Nunito",
-              value: "nunito",
-            },
-            {
-              label: "Lato",
-              value: "lato",
-            },
-          ],
-        },
-        {
-          type: "string",
-          name: "icon",
-          label: "Icon Set",
-          options: [
-            {
-              label: "Boxicons",
-              value: "boxicon",
-            },
-            {
-              label: "Heroicons",
-              value: "heroicon",
-            },
-          ],
-        },
-        {
-          type: "string",
-          name: "darkMode",
-          label: "Dark Mode",
-          options: [
-            {
-              label: "System",
-              value: "system",
-            },
-            {
-              label: "Light",
-              value: "light",
-            },
-            {
-              label: "Dark",
-              value: "dark",
+              type: "boolean",
+              label: "Show Newsletter (coming soon)",
+              name: "enable",
+              description: "Note: this is not currently available",
             },
           ],
         },

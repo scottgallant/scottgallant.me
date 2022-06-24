@@ -497,7 +497,6 @@ export type GlobalHeaderNav = {
 
 export type GlobalHeader = {
   __typename?: 'GlobalHeader';
-  color?: Maybe<Scalars['String']>;
   nav?: Maybe<Array<Maybe<GlobalHeaderNav>>>;
 };
 
@@ -509,25 +508,21 @@ export type GlobalFooterSocial = {
   github?: Maybe<Scalars['String']>;
 };
 
-export type GlobalFooter = {
-  __typename?: 'GlobalFooter';
-  color?: Maybe<Scalars['String']>;
-  social?: Maybe<GlobalFooterSocial>;
+export type GlobalFooterNewsetter = {
+  __typename?: 'GlobalFooterNewsetter';
+  enable?: Maybe<Scalars['Boolean']>;
 };
 
-export type GlobalTheme = {
-  __typename?: 'GlobalTheme';
-  color?: Maybe<Scalars['String']>;
-  font?: Maybe<Scalars['String']>;
-  icon?: Maybe<Scalars['String']>;
-  darkMode?: Maybe<Scalars['String']>;
+export type GlobalFooter = {
+  __typename?: 'GlobalFooter';
+  social?: Maybe<GlobalFooterSocial>;
+  newsetter?: Maybe<GlobalFooterNewsetter>;
 };
 
 export type Global = Node & Document & {
   __typename?: 'Global';
   header?: Maybe<GlobalHeader>;
   footer?: Maybe<GlobalFooter>;
-  theme?: Maybe<GlobalTheme>;
   id: Scalars['ID'];
   _sys: SystemInfo;
   _values: Scalars['JSON'];
@@ -539,7 +534,6 @@ export type GlobalHeaderNavFilter = {
 };
 
 export type GlobalHeaderFilter = {
-  color?: InputMaybe<StringFilter>;
   nav?: InputMaybe<GlobalHeaderNavFilter>;
 };
 
@@ -550,22 +544,18 @@ export type GlobalFooterSocialFilter = {
   github?: InputMaybe<StringFilter>;
 };
 
-export type GlobalFooterFilter = {
-  color?: InputMaybe<StringFilter>;
-  social?: InputMaybe<GlobalFooterSocialFilter>;
+export type GlobalFooterNewsetterFilter = {
+  enable?: InputMaybe<BooleanFilter>;
 };
 
-export type GlobalThemeFilter = {
-  color?: InputMaybe<StringFilter>;
-  font?: InputMaybe<StringFilter>;
-  icon?: InputMaybe<StringFilter>;
-  darkMode?: InputMaybe<StringFilter>;
+export type GlobalFooterFilter = {
+  social?: InputMaybe<GlobalFooterSocialFilter>;
+  newsetter?: InputMaybe<GlobalFooterNewsetterFilter>;
 };
 
 export type GlobalFilter = {
   header?: InputMaybe<GlobalHeaderFilter>;
   footer?: InputMaybe<GlobalFooterFilter>;
-  theme?: InputMaybe<GlobalThemeFilter>;
 };
 
 export type GlobalConnectionEdges = {
@@ -756,7 +746,6 @@ export type GlobalHeaderNavMutation = {
 };
 
 export type GlobalHeaderMutation = {
-  color?: InputMaybe<Scalars['String']>;
   nav?: InputMaybe<Array<InputMaybe<GlobalHeaderNavMutation>>>;
 };
 
@@ -767,22 +756,18 @@ export type GlobalFooterSocialMutation = {
   github?: InputMaybe<Scalars['String']>;
 };
 
-export type GlobalFooterMutation = {
-  color?: InputMaybe<Scalars['String']>;
-  social?: InputMaybe<GlobalFooterSocialMutation>;
+export type GlobalFooterNewsetterMutation = {
+  enable?: InputMaybe<Scalars['Boolean']>;
 };
 
-export type GlobalThemeMutation = {
-  color?: InputMaybe<Scalars['String']>;
-  font?: InputMaybe<Scalars['String']>;
-  icon?: InputMaybe<Scalars['String']>;
-  darkMode?: InputMaybe<Scalars['String']>;
+export type GlobalFooterMutation = {
+  social?: InputMaybe<GlobalFooterSocialMutation>;
+  newsetter?: InputMaybe<GlobalFooterNewsetterMutation>;
 };
 
 export type GlobalMutation = {
   header?: InputMaybe<GlobalHeaderMutation>;
   footer?: InputMaybe<GlobalFooterMutation>;
-  theme?: InputMaybe<GlobalThemeMutation>;
 };
 
 export type ArticlePartsOverrideFragment = { __typename?: 'Article', title: string, subtitle?: string | null, body?: any | null, advanced?: { __typename: 'ArticleAdvanced', slug?: string | null, image?: string | null, date?: string | null, description?: string | null, featured?: boolean | null, authors?: Array<{ __typename: 'ArticleAdvancedAuthors', author?: { __typename?: 'Author', id: string, title?: string | null, slug?: string | null, email?: string | null, first_name?: string | null, twitter?: string | null, github?: string | null, linkedin?: string | null, bio?: string | null, image?: string | null, avif?: string | null, avif_base64?: string | null, image_base64?: string | null } | null } | null> | null, categories?: Array<{ __typename: 'ArticleAdvancedCategories', category?: { __typename?: 'Category', id: string, title?: string | null, slug?: string | null, description?: string | null, related?: Array<{ __typename: 'CategoryRelated', category?: { __typename?: 'Category', id: string } | null } | null> | null } | null } | null> | null } | null };
@@ -823,7 +808,7 @@ export type AuthorPartsFragment = { __typename?: 'Author', title?: string | null
 
 export type CategoryPartsFragment = { __typename?: 'Category', title?: string | null, slug?: string | null, description?: string | null, related?: Array<{ __typename: 'CategoryRelated', category?: { __typename?: 'Category', id: string } | null } | null> | null };
 
-export type GlobalPartsFragment = { __typename?: 'Global', header?: { __typename: 'GlobalHeader', color?: string | null, nav?: Array<{ __typename: 'GlobalHeaderNav', href?: string | null, label?: string | null } | null> | null } | null, footer?: { __typename: 'GlobalFooter', color?: string | null, social?: { __typename: 'GlobalFooterSocial', facebook?: string | null, twitter?: string | null, instagram?: string | null, github?: string | null } | null } | null, theme?: { __typename: 'GlobalTheme', color?: string | null, font?: string | null, icon?: string | null, darkMode?: string | null } | null };
+export type GlobalPartsFragment = { __typename?: 'Global', header?: { __typename: 'GlobalHeader', nav?: Array<{ __typename: 'GlobalHeaderNav', href?: string | null, label?: string | null } | null> | null } | null, footer?: { __typename: 'GlobalFooter', social?: { __typename: 'GlobalFooterSocial', facebook?: string | null, twitter?: string | null, instagram?: string | null, github?: string | null } | null, newsetter?: { __typename: 'GlobalFooterNewsetter', enable?: boolean | null } | null } | null };
 
 export type PagesQueryVariables = Exact<{
   relativePath: Scalars['String'];
@@ -906,7 +891,7 @@ export type GlobalQueryVariables = Exact<{
 }>;
 
 
-export type GlobalQuery = { __typename?: 'Query', global: { __typename?: 'Global', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, header?: { __typename: 'GlobalHeader', color?: string | null, nav?: Array<{ __typename: 'GlobalHeaderNav', href?: string | null, label?: string | null } | null> | null } | null, footer?: { __typename: 'GlobalFooter', color?: string | null, social?: { __typename: 'GlobalFooterSocial', facebook?: string | null, twitter?: string | null, instagram?: string | null, github?: string | null } | null } | null, theme?: { __typename: 'GlobalTheme', color?: string | null, font?: string | null, icon?: string | null, darkMode?: string | null } | null } };
+export type GlobalQuery = { __typename?: 'Query', global: { __typename?: 'Global', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, header?: { __typename: 'GlobalHeader', nav?: Array<{ __typename: 'GlobalHeaderNav', href?: string | null, label?: string | null } | null> | null } | null, footer?: { __typename: 'GlobalFooter', social?: { __typename: 'GlobalFooterSocial', facebook?: string | null, twitter?: string | null, instagram?: string | null, github?: string | null } | null, newsetter?: { __typename: 'GlobalFooterNewsetter', enable?: boolean | null } | null } | null } };
 
 export type GlobalConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']>;
@@ -918,7 +903,7 @@ export type GlobalConnectionQueryVariables = Exact<{
 }>;
 
 
-export type GlobalConnectionQuery = { __typename?: 'Query', globalConnection: { __typename?: 'GlobalConnection', totalCount: number, edges?: Array<{ __typename?: 'GlobalConnectionEdges', node?: { __typename?: 'Global', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, header?: { __typename: 'GlobalHeader', color?: string | null, nav?: Array<{ __typename: 'GlobalHeaderNav', href?: string | null, label?: string | null } | null> | null } | null, footer?: { __typename: 'GlobalFooter', color?: string | null, social?: { __typename: 'GlobalFooterSocial', facebook?: string | null, twitter?: string | null, instagram?: string | null, github?: string | null } | null } | null, theme?: { __typename: 'GlobalTheme', color?: string | null, font?: string | null, icon?: string | null, darkMode?: string | null } | null } | null } | null> | null } };
+export type GlobalConnectionQuery = { __typename?: 'Query', globalConnection: { __typename?: 'GlobalConnection', totalCount: number, edges?: Array<{ __typename?: 'GlobalConnectionEdges', node?: { __typename?: 'Global', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, header?: { __typename: 'GlobalHeader', nav?: Array<{ __typename: 'GlobalHeaderNav', href?: string | null, label?: string | null } | null> | null } | null, footer?: { __typename: 'GlobalFooter', social?: { __typename: 'GlobalFooterSocial', facebook?: string | null, twitter?: string | null, instagram?: string | null, github?: string | null } | null, newsetter?: { __typename: 'GlobalFooterNewsetter', enable?: boolean | null } | null } | null } | null } | null> | null } };
 
 export const AuthorPartsFragmentDoc = gql`
     fragment AuthorParts on Author {
@@ -1026,7 +1011,6 @@ export const GlobalPartsFragmentDoc = gql`
     fragment GlobalParts on Global {
   header {
     __typename
-    color
     nav {
       __typename
       href
@@ -1035,7 +1019,6 @@ export const GlobalPartsFragmentDoc = gql`
   }
   footer {
     __typename
-    color
     social {
       __typename
       facebook
@@ -1043,13 +1026,10 @@ export const GlobalPartsFragmentDoc = gql`
       instagram
       github
     }
-  }
-  theme {
-    __typename
-    color
-    font
-    icon
-    darkMode
+    newsetter {
+      __typename
+      enable
+    }
   }
 }
     `;
