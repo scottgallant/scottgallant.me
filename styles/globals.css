@@ -131,6 +131,6 @@ main.prose blockquote {
     color: #aad6ff;
 }
 
-.tina-tailwind span.block.w-full.text-lg.mb-[6px].text-gray-700.font-medium.leading-tight.text-ellipsis.overflow-hidden.whitespace-nowrap {
+span.block.w-full.text-lg.mb-\[6px\].text-gray-700.font-medium.leading-tight.text-ellipsis.overflow-hidden.whitespace-nowrap {
     display: none !important;
 }
