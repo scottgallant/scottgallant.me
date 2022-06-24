@@ -3,13 +3,15 @@ import article from "./models/article";
 import author from "./models/author";
 import category from "./models/category";
 import page from "./models/page";
+import global from "./models/global";
 
 export default defineSchema({
   collections: [
+    page,
     article,
     author,
     category,
-    page,
+    global,
   ],
 });
 

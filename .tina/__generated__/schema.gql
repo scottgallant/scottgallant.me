@@ -48,21 +48,24 @@ type Query {
   collections: [Collection!]!
   node(id: String): Node!
   document(collection: String, relativePath: String): DocumentNode!
+  pages(relativePath: String): Pages!
+  pagesConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: PagesFilter): PagesConnection!
   article(relativePath: String): Article!
   articleConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: ArticleFilter): ArticleConnection!
   author(relativePath: String): Author!
   authorConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: AuthorFilter): AuthorConnection!
   category(relativePath: String): Category!
   categoryConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: CategoryFilter): CategoryConnection!
-  pages(relativePath: String): Pages!
-  pagesConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: PagesFilter): PagesConnection!
+  global(relativePath: String): Global!
+  globalConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: GlobalFilter): GlobalConnection!
 }
 
 input DocumentFilter {
+  pages: PagesFilter
   article: ArticleFilter
   author: AuthorFilter
   category: CategoryFilter
-  pages: PagesFilter
+  global: GlobalFilter
 }
 
 type DocumentConnectionEdges {
@@ -88,7 +91,46 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter): DocumentConnection!
 }
 
-union DocumentNode = Article | Author | Category | Pages
+union DocumentNode = Pages | Article | Author | Category | Global
+
+type Pages implements Node & Document {
+  title: String!
+  slug: String
+  text: JSON
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input StringFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+  in: [String]
+}
+
+input RichTextFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+}
+
+input PagesFilter {
+  title: StringFilter
+  slug: StringFilter
+  text: RichTextFilter
+}
+
+type PagesConnectionEdges {
+  cursor: String!
+  node: Pages
+}
+
+type PagesConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [PagesConnectionEdges]
+}
 
 union ArticleAdvancedAuthorsAuthor = Author
 
@@ -120,13 +162,6 @@ type Article implements Node & Document {
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
-}
-
-input StringFilter {
-  startsWith: String
-  eq: String
-  exists: Boolean
-  in: [String]
 }
 
 input ArticleAdvancedAuthorsAuthorFilter {
@@ -183,12 +218,6 @@ input ArticleBodyCaptionedImageFilter {
 
 input ArticleBodyTweetFilter {
   tweetId: StringFilter
-}
-
-input RichTextFilter {
-  startsWith: String
-  eq: String
-  exists: Boolean
 }
 
 input ArticleBodyTextBoxFilter {
@@ -312,30 +341,88 @@ type CategoryConnection implements Connection {
   edges: [CategoryConnectionEdges]
 }
 
-type Pages implements Node & Document {
-  title: String!
-  slug: String
-  text: JSON
+type GlobalHeaderNav {
+  href: String
+  label: String
+}
+
+type GlobalHeader {
+  color: String
+  nav: [GlobalHeaderNav]
+}
+
+type GlobalFooterSocial {
+  facebook: String
+  twitter: String
+  instagram: String
+  github: String
+}
+
+type GlobalFooter {
+  color: String
+  social: GlobalFooterSocial
+}
+
+type GlobalTheme {
+  color: String
+  font: String
+  icon: String
+  darkMode: String
+}
+
+type Global implements Node & Document {
+  header: GlobalHeader
+  footer: GlobalFooter
+  theme: GlobalTheme
   id: ID!
   _sys: SystemInfo!
   _values: JSON!
 }
 
-input PagesFilter {
-  title: StringFilter
-  slug: StringFilter
-  text: RichTextFilter
+input GlobalHeaderNavFilter {
+  href: StringFilter
+  label: StringFilter
 }
 
-type PagesConnectionEdges {
+input GlobalHeaderFilter {
+  color: StringFilter
+  nav: GlobalHeaderNavFilter
+}
+
+input GlobalFooterSocialFilter {
+  facebook: StringFilter
+  twitter: StringFilter
+  instagram: StringFilter
+  github: StringFilter
+}
+
+input GlobalFooterFilter {
+  color: StringFilter
+  social: GlobalFooterSocialFilter
+}
+
+input GlobalThemeFilter {
+  color: StringFilter
+  font: StringFilter
+  icon: StringFilter
+  darkMode: StringFilter
+}
+
+input GlobalFilter {
+  header: GlobalHeaderFilter
+  footer: GlobalFooterFilter
+  theme: GlobalThemeFilter
+}
+
+type GlobalConnectionEdges {
   cursor: String!
-  node: Pages
+  node: Global
 }
 
-type PagesConnection implements Connection {
+type GlobalConnection implements Connection {
   pageInfo: PageInfo!
   totalCount: Float!
-  edges: [PagesConnectionEdges]
+  edges: [GlobalConnectionEdges]
 }
 
 type Mutation {
@@ -343,21 +430,30 @@ type Mutation {
   updateDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
   deleteDocument(collection: String, relativePath: String!): DocumentNode!
   createDocument(collection: String, relativePath: String!, params: DocumentMutation!): DocumentNode!
+  updatePages(relativePath: String!, params: PagesMutation!): Pages!
+  createPages(relativePath: String!, params: PagesMutation!): Pages!
   updateArticle(relativePath: String!, params: ArticleMutation!): Article!
   createArticle(relativePath: String!, params: ArticleMutation!): Article!
   updateAuthor(relativePath: String!, params: AuthorMutation!): Author!
   createAuthor(relativePath: String!, params: AuthorMutation!): Author!
   updateCategory(relativePath: String!, params: CategoryMutation!): Category!
   createCategory(relativePath: String!, params: CategoryMutation!): Category!
-  updatePages(relativePath: String!, params: PagesMutation!): Pages!
-  createPages(relativePath: String!, params: PagesMutation!): Pages!
+  updateGlobal(relativePath: String!, params: GlobalMutation!): Global!
+  createGlobal(relativePath: String!, params: GlobalMutation!): Global!
 }
 
 input DocumentMutation {
+  pages: PagesMutation
   article: ArticleMutation
   author: AuthorMutation
   category: CategoryMutation
-  pages: PagesMutation
+  global: GlobalMutation
+}
+
+input PagesMutation {
+  title: String
+  slug: String
+  text: JSON
 }
 
 input ArticleAdvancedAuthorsMutation {
@@ -411,10 +507,39 @@ input CategoryMutation {
   description: String
 }
 
-input PagesMutation {
-  title: String
-  slug: String
-  text: JSON
+input GlobalHeaderNavMutation {
+  href: String
+  label: String
+}
+
+input GlobalHeaderMutation {
+  color: String
+  nav: [GlobalHeaderNavMutation]
+}
+
+input GlobalFooterSocialMutation {
+  facebook: String
+  twitter: String
+  instagram: String
+  github: String
+}
+
+input GlobalFooterMutation {
+  color: String
+  social: GlobalFooterSocialMutation
+}
+
+input GlobalThemeMutation {
+  color: String
+  font: String
+  icon: String
+  darkMode: String
+}
+
+input GlobalMutation {
+  header: GlobalHeaderMutation
+  footer: GlobalFooterMutation
+  theme: GlobalThemeMutation
 }
 
 schema {

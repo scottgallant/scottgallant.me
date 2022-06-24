@@ -3,7 +3,7 @@ import { authorReferenceField } from "./author";
 import { categoriesReferenceField } from "./category";
 
 const article: TinaCloudCollection = {
-  label: "Article",
+  label: "Articles",
   name: "article",
   path: "content/articles",
   format: "mdx",
