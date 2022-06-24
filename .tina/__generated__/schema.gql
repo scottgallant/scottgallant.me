@@ -95,7 +95,6 @@ union DocumentNode = Pages | Article | Author | Category | Global
 
 type Pages implements Node & Document {
   title: String!
-  slug: String
   text: JSON
   id: ID!
   _sys: SystemInfo!
@@ -117,7 +116,6 @@ input RichTextFilter {
 
 input PagesFilter {
   title: StringFilter
-  slug: StringFilter
   text: RichTextFilter
 }
 
@@ -452,7 +450,6 @@ input DocumentMutation {
 
 input PagesMutation {
   title: String
-  slug: String
   text: JSON
 }
 

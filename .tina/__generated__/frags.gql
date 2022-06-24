@@ -1,6 +1,5 @@
 fragment PagesParts on Pages {
   title
-  slug
   text
 }
 

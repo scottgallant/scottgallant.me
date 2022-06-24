@@ -230,7 +230,6 @@ export type DocumentNode = Pages | Article | Author | Category | Global;
 export type Pages = Node & Document & {
   __typename?: 'Pages';
   title: Scalars['String'];
-  slug?: Maybe<Scalars['String']>;
   text?: Maybe<Scalars['JSON']>;
   id: Scalars['ID'];
   _sys: SystemInfo;
@@ -252,7 +251,6 @@ export type RichTextFilter = {
 
 export type PagesFilter = {
   title?: InputMaybe<StringFilter>;
-  slug?: InputMaybe<StringFilter>;
   text?: InputMaybe<RichTextFilter>;
 };
 
@@ -698,7 +696,6 @@ export type DocumentMutation = {
 
 export type PagesMutation = {
   title?: InputMaybe<Scalars['String']>;
-  slug?: InputMaybe<Scalars['String']>;
   text?: InputMaybe<Scalars['JSON']>;
 };
 
@@ -818,7 +815,7 @@ export type GetArticlesByAuthorQueryVariables = Exact<{
 
 export type GetArticlesByAuthorQuery = { __typename?: 'Query', articleConnection: { __typename?: 'ArticleConnection', edges?: Array<{ __typename?: 'ArticleConnectionEdges', node?: { __typename?: 'Article', title: string, subtitle?: string | null, body?: any | null, _sys: { __typename?: 'SystemInfo', filename: string }, advanced?: { __typename: 'ArticleAdvanced', slug?: string | null, image?: string | null, date?: string | null, description?: string | null, featured?: boolean | null, authors?: Array<{ __typename: 'ArticleAdvancedAuthors', author?: { __typename?: 'Author', id: string, title?: string | null, slug?: string | null, email?: string | null, first_name?: string | null, twitter?: string | null, github?: string | null, linkedin?: string | null, bio?: string | null, image?: string | null, avif?: string | null, avif_base64?: string | null, image_base64?: string | null } | null } | null> | null, categories?: Array<{ __typename: 'ArticleAdvancedCategories', category?: { __typename?: 'Category', id: string, title?: string | null, slug?: string | null, description?: string | null, related?: Array<{ __typename: 'CategoryRelated', category?: { __typename?: 'Category', id: string } | null } | null> | null } | null } | null> | null } | null } | null } | null> | null } };
 
-export type PagesPartsFragment = { __typename?: 'Pages', title: string, slug?: string | null, text?: any | null };
+export type PagesPartsFragment = { __typename?: 'Pages', title: string, text?: any | null };
 
 export type ArticlePartsFragment = { __typename?: 'Article', title: string, subtitle?: string | null, body?: any | null, advanced?: { __typename: 'ArticleAdvanced', slug?: string | null, image?: string | null, date?: string | null, description?: string | null, featured?: boolean | null, authors?: Array<{ __typename: 'ArticleAdvancedAuthors', author?: { __typename?: 'Author', id: string } | null } | null> | null, categories?: Array<{ __typename: 'ArticleAdvancedCategories', category?: { __typename?: 'Category', id: string } | null } | null> | null } | null };
 
@@ -833,7 +830,7 @@ export type PagesQueryVariables = Exact<{
 }>;
 
 
-export type PagesQuery = { __typename?: 'Query', pages: { __typename?: 'Pages', id: string, title: string, slug?: string | null, text?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+export type PagesQuery = { __typename?: 'Query', pages: { __typename?: 'Pages', id: string, title: string, text?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
 
 export type PagesConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']>;
@@ -845,7 +842,7 @@ export type PagesConnectionQueryVariables = Exact<{
 }>;
 
 
-export type PagesConnectionQuery = { __typename?: 'Query', pagesConnection: { __typename?: 'PagesConnection', totalCount: number, edges?: Array<{ __typename?: 'PagesConnectionEdges', node?: { __typename?: 'Pages', id: string, title: string, slug?: string | null, text?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+export type PagesConnectionQuery = { __typename?: 'Query', pagesConnection: { __typename?: 'PagesConnection', totalCount: number, edges?: Array<{ __typename?: 'PagesConnectionEdges', node?: { __typename?: 'Pages', id: string, title: string, text?: any | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
 
 export type ArticleQueryVariables = Exact<{
   relativePath: Scalars['String'];
@@ -991,7 +988,6 @@ ${CategoryPartsFragmentDoc}`;
 export const PagesPartsFragmentDoc = gql`
     fragment PagesParts on Pages {
   title
-  slug
   text
 }
     `;

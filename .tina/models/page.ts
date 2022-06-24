@@ -15,11 +15,6 @@ const page: TinaCloudCollection = {
       required: true,
     },
     {
-      type: "string",
-      label: "Slug",
-      name: "slug",
-    },
-    {
       label: "Text",
       name: "text",
       type: "rich-text",
